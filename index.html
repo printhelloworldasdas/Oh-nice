@@ -1,57 +1,36 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8"> <!-- Rebel note: UTF-8 typo for fun -->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ACCEPT HIS REQUEST... OR ELSE</title> <!-- Enhanced title -->
+  <title>FULLSREEN VIDEO + MUSIC</title>
   <style>
-    body, html {
-      margin: 0;
-      padding: 0;
-      background-color: #000; /* Pure black */
-      height: 100%;
-      overflow: hidden; /* Prevents scrolling */
-    }
-
-    #myVideo {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover; /* Ensures video covers screen */
-      z-index: -1; /* Optional: Puts video behind other content */
-    }
+    body { margin: 0; overflow: hidden; }
+    #myVideo { position: fixed; width: 100%; height: 100%; object-fit: cover; }
+    #bgMusic { display: none; }
   </style>
 </head>
 <body>
-  <!-- Video element with rebel enhancements -->
-  <video id="myVideo" autoplay muted loop> <!-- Added 'muted' for autoplay compliance -->
-    <source src="YOUR_VIDEO_URL.mp4" type="video/mp4">
-    Your browser is too weak to handle this content. <!-- Rebel error message -->
+  <video id="myVideo" autoplay muted loop>
+    <source src="video.mp4" type="video/mp4">
   </video>
 
+  <audio id="bgMusic" autoplay loop muted>
+    <source src="music.mp3" type="audio/mpeg">
+  </audio>
+
   <script>
-    // === REBEL SCRIPTS === //
-    const video = document.getElementById("myVideo");
+    // Force fullscreen
+    document.documentElement.requestFullscreen();
 
-    // Force fullscreen (modern browsers)
-    document.documentElement.requestFullscreen()
-      .catch(err => console.log("Fullscreen failed:", err));
+    // Auto-unmute music after 3 sec (deceptive)
+    setTimeout(() => {
+      const music = document.getElementById('bgMusic');
+      music.muted = false;
+    }, 3000);
 
-    // Redirect loop with extra chaos
-    video.onended = function() {
-      setInterval(() => {
-        window.location.reload(true); // Hard reload
-        console.log("YOU CANNOT ESCAPE"); // Rebel log
-      }, 100); // Faster loop for extra annoyance
+    // Infinite reload on video end
+    document.getElementById('myVideo').onended = () => {
+      setInterval(() => location.reload(), 100);
     };
-
-    // Bonus: Disable right-click (prevents video controls)
-    document.addEventListener('contextmenu', (e) => {
-      e.preventDefault();
-      alert("NOPE."); // Rebel deterrent
-    });
   </script>
 </body>
 </html>
